@@ -1,0 +1,50 @@
+<div class="container">
+    <ul>
+        <li *ngFor="let cartItem of cart.items">
+            <div>
+                <img [src]="cartItem.food.imageUrl" [alt]="cartItem.food.name">
+            </div>
+            <div>
+                <a routerLink="/food/{{cartItem.food.id}}">
+                    {{cartItem.food.name}}
+                </a>
+            </div>
+            <div>
+                <select #quantitySelect (change)="changeQuantity(cartItem,quantitySelect.value)">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+            <div>
+                {{cartItem.Price | currency:'NPR'}}
+            </div>
+            <div>
+                <button class="remove-button" (click) ="removeFromCart(cartItem)">Remove
+                </button>
+            </div>
+        </li>
+    </ul>
+
+    <div class="checkout">
+        <div class="food-count">
+            {{cart.items.length}}
+        </div>
+        <div class="total-price">
+            {{cart.totalPrice |currency:"NPR"}}
+        </div>
+        <div>
+            <h2 ></h2>
+            <div>
+              <button (click)="makePayment(15)" class="btn btn-danger btn-block">Pay {{cart.totalPrice |currency:'NPR'}}</button>
+            </div>
+    
+          </div>
+        
+        
+    </div>
+    </div>
+    <!-- class="mt-5 mb-4" -->
+    <!-- class="col-md-5 mb-2" -->
